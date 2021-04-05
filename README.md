@@ -39,4 +39,4 @@ make clean DEBUG=1 load
 ```
 
 ## Documentation
-This follows the specification available in the [`toncoinapp.asc`](https://github.com/newton-blockchain/ledger-app-ton/blob/master/doc/toncoinapp.asc)
+This follows the specification available in the [`toncoinapp.asc`](https://github.com/newton-blockchain/ledger-app-ton/blob/main/doc/toncoinapp.asc)
