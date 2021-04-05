@@ -38,7 +38,7 @@ static const uint32_t HARDENED_OFFSET = 0x80000000;
 void get_private_key(uint32_t account_number, cx_ecfp_private_key_t *privateKey) {
     const uint32_t derivePath[BIP32_PATH] = {
             44 | HARDENED_OFFSET,
-            396 | HARDENED_OFFSET,
+            607 | HARDENED_OFFSET,
             account_number | HARDENED_OFFSET,
             0 | HARDENED_OFFSET,
             0 | HARDENED_OFFSET
