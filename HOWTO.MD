@@ -1,6 +1,10 @@
 # How to use Ledger Nano with TON
 
-### About Ledger wallet
+You can easily and securely receive, store and send TON coins using the Ledger Nano S.
+
+TON App for Ledger Nano S is [open source](https://github.com/newton-blockchain/ledger-app-ton) and maintained by TON community.
+
+### About Ledger hardware wallet
 
 A [Ledger Nano S](https://shop.ledger.com/products/ledger-nano-s) is a hardware wallet. Hardware wallets are considered very secure for the storage of a user’s private keys in the blockchain world. Your digital assets are safe even when using an infected (or untrusted) PC.
 
@@ -41,7 +45,7 @@ The Open Network — a fast and secure blockchain and network project that allow
 
 ### Use Ledger device with Web Wallet
 
-You can use the TON web wallet with your Ledger device.
+You can use the [open source](https://github.com/toncenter/ton-wallet) TON web wallet with your Ledger device.
 
 1. Simply connect and unlock your Ledger Nano S device;
 
@@ -57,9 +61,9 @@ You can use the TON web wallet with your Ledger device.
 
 1. Click "Receive" button and then click "Show Public Key on Device";
 
-2. You can check that the public key in the web wallet and on the device screen is the same;
+2. You can check that the public key in the web wallet and on the Ledger device screen is the same;
 
-3. The public key is displayed in the device because in the TON the wallet address depends on the version of the wallet smart contract, and the wallet address can be presented in several forms. You can check that **public key matches your address** on the [open source community web page](https://newton-blockchain.github.io/address/). 
+3. The public key is displayed in the Ledger device because in the TON the wallet address depends on the version of the wallet smart contract, and the wallet address can be presented in several forms. You can check that **public key matches your address** on the [open source community web page](https://newton-blockchain.github.io/address/). 
 
 ### Send TON through Ledger device
 
@@ -69,15 +73,15 @@ You can use the TON web wallet with your Ledger device.
 
 3. Enter destination address and amount and click the "Send TON" button;
 
-4. You can check the amount and destination address on the ledger screen;
+4. You can check the amount and destination address on the Ledger device screen;
 
-5. Note that the TON address can be represented in several forms. Ledger screen always display address in HEX form. Use [this web page](https://newton-blockchain.github.io/address/) to display the address in different forms;
+5. Note that the TON address can be represented in several forms. Ledger device screen always display address in HEX form. Use [this web page](https://newton-blockchain.github.io/address/) to display the address in different forms;
 
-5. After approval on the Ledger, the transaction will be sent
+5. After approval on the Ledger device, the transaction will be sent;
 
 ### First send 
 
-If this is the first sending, then you will need to approve the second message on the Ledger - the message of deploying your wallet's smart contract. 
+If this is the first sending, then you will need to approve the second message on the Ledger device - the message of deploying your wallet's smart contract. 
 
 This is only necessary for the first sending.
 
