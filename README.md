@@ -4,9 +4,8 @@
 TON Coin Ledger app for Ledger Nano S/X
 
 ## Building and installing
-Use `prepare-devenv.sh` with the right target (`s` or `x`).
 
-Install prerequisite and switch to a Nano S dev-env:
+Install prerequisite and use `prepare-devenv.sh` with the right target (`s` or `x`):
 
 ```bash
 sudo apt install gcc make gcc-multilib g++-multilib libncurses5
