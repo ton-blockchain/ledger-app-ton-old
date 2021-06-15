@@ -16,13 +16,17 @@
 #define TO_SIGN_LENGTH 32
 #define SIGN_LENGTH 64
 #define MAX_AMOUNT_LENGTH 0xF
+#define HASH_SIZE 32
+#define BOC_GENERIC_TAG 0xb5ee9c72
+#define MAX_ROOTS_COUNT 1
+#define MAX_CELLS_COUNT 16
+#define MAX_MESSAGE_CELLS_COUNT 2
+#define MAX_WALLET_CELLS_COUNT 3
 
 extern ux_state_t ux;
 // display stepped screens
 extern unsigned int ux_step;
 extern unsigned int ux_step_count;
-
-#define MAX_CELLS_COUNT 2
 
 void reset_app_context(void);
 
@@ -58,12 +62,12 @@ typedef union {
     SignTransferMsgContext_t sign_tm_context;
 } DataContext_t;
 
-typedef struct MessageContext_t {
+typedef struct BocContext_t {
     Cell_t cells[MAX_CELLS_COUNT];
     uint8_t cell_depth[MAX_CELLS_COUNT];
-} MessageContext_t;
+} BocContext_t;
 
 extern DataContext_t data_context;
-extern MessageContext_t message_context;
+extern BocContext_t boc_context;
 
 #endif
