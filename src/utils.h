@@ -15,6 +15,8 @@ void get_private_key(uint32_t accountNumber, cx_ecfp_private_key_t *privateKey);
 void send_response(uint8_t tx, bool approve);
 uint8_t leading_zeros(uint16_t value);
 uint8_t convert_hex_amount_to_displayable(uint8_t* amount, uint8_t amount_length, char* out);
+uint16_t crc16(char *ptr, int count);
+size_t base64_encode(const uint8_t *data, int data_length, char *out);
 
 #define VALIDATE(cond, error) \
     do {\

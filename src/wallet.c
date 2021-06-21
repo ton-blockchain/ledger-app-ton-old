@@ -91,3 +91,52 @@ void get_address(const uint32_t account_number, uint8_t* address) {
 
     os_memcpy(address, Cell_get_hash(boc_context.cells, 0), ADDRESS_LENGTH);
 }
+
+static const uint8_t bounceable_tag = 0x11;
+static const uint8_t non_bounceable_tag = 0x51;
+static const uint8_t test_flag = 0x80;
+void address_to_string(int8_t wc, uint8_t display_flags, uint8_t* address, uint8_t in_len, uint8_t out_len, char* str) {
+    VALIDATE(in_len == ADDRESS_LENGTH && out_len >= 70, ERR_INVALID_DATA);
+
+    bool is_user_friendly = display_flags & USER_FRIENDLY;
+    bool is_url_safe = display_flags & URL_SAFE;
+    bool is_bounceable = display_flags & BOUNCEABLE;
+    bool is_test_only = display_flags & TEST_ONLY;
+    
+    if (is_user_friendly) {
+        uint8_t tag = is_bounceable ? bounceable_tag : non_bounceable_tag;
+        if (is_test_only) {
+            tag |= test_flag;
+        }
+
+        uint8_t addr[36];
+        addr[0] = tag;
+        addr[1] = wc;
+        os_memcpy(addr + 2, address, in_len);
+
+        uint8_t crc_offset = in_len + 2;
+        uint16_t crc = crc16((char*)addr, crc_offset);
+        addr[crc_offset] = crc >> 8;
+        addr[crc_offset + 1] = crc & 0xFF;
+
+        size_t out_len = base64_encode(addr, sizeof(addr), str);
+
+        if (is_url_safe) {
+            for (uint8_t i = 0; i < out_len; ++i) {
+                if (str[i] == '+') {
+                    str[i] = '-';
+                }
+                if (str[i] == '/') {
+                    str[i] = '_';
+                }
+            }
+        }
+    }
+    else {
+        char wc_temp[6]; // snprintf always returns zero
+        snprintf(wc_temp, sizeof(wc_temp), "%d:", wc);
+        int wc_len = strlen(wc_temp);
+        os_memcpy(str, wc_temp, wc_len);
+        snprintf(str + wc_len, out_len - wc_len, "%.*h", in_len, address);
+    }
+}

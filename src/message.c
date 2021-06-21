@@ -26,7 +26,7 @@ void deserialize_array(uint8_t* cell_data, uint8_t cell_data_size, uint16_t offs
     }
 }
 
-void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t cell_data_size) {
+void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t cell_data_size, uint8_t display_flags) {
     {
         uint8_t f = SliceData_get_next_bit(slice);
         uint8_t ihr_disabled = SliceData_get_next_bit(slice);
@@ -34,8 +34,8 @@ void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t 
         uint8_t bounced = SliceData_get_next_bit(slice);
         UNUSED(f);
         UNUSED(ihr_disabled);
-        UNUSED(bounce);
         UNUSED(bounced);
+        display_flags = bounce ? display_flags | BOUNCEABLE : display_flags;
 
         uint64_t use_src_address = SliceData_get_next_int(slice, 2);
         VALIDATE(use_src_address == 0, ERR_INVALID_DATA);
@@ -51,14 +51,8 @@ void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t 
     uint8_t address[ADDRESS_LENGTH];
     deserialize_array(cell_data, cell_data_size, offset, ADDRESS_LENGTH, address);
     SliceData_move_by(slice, ADDRESS_LENGTH * 8);
-
-    char* address_str = data_context.sign_tm_context.address_str;
-    char wc_temp[6]; // snprintf always returns zero
-    snprintf(wc_temp, sizeof(wc_temp), "%d:", wc);
-    int wc_len = strlen(wc_temp);
-    os_memcpy(address_str, wc_temp, wc_len);
-    address_str += wc_len;
-    snprintf(address_str, sizeof(data_context.sign_tm_context.address_str) - wc_len, "%.*h", sizeof(address), address);
+    
+    address_to_string(wc, display_flags, address, sizeof(address), sizeof(data_context.sign_tm_context.address_str), data_context.sign_tm_context.address_str);
 }
 
 void deserialize_amount(struct SliceData_t* slice, uint8_t* cell_data, uint8_t cell_data_size) {
@@ -76,7 +70,7 @@ void deserialize_amount(struct SliceData_t* slice, uint8_t* cell_data, uint8_t c
     strcpy(amount_str + text_size, " TON");
 }
 
-void deserialize_message(struct ByteStream_t* src) {
+void deserialize_message(struct ByteStream_t* src, uint8_t display_flags) {
     uint8_t cells_count = deserialize_cells_tree(src);
     VALIDATE(cells_count == MAX_MESSAGE_CELLS_COUNT, ERR_INVALID_MESSAGE);
     Cell_t* cells = boc_context.cells;
@@ -93,7 +87,7 @@ void deserialize_message(struct ByteStream_t* src) {
     uint8_t cell_data_size = Cell_get_data_size(&cells[ADDRESS_CELL_INDEX]);
     SliceData_t slice;
     SliceData_init(&slice, cell_data, cell_data_size);
-    deserialize_address(&slice, cell_data, cell_data_size);
+    deserialize_address(&slice, cell_data, cell_data_size, display_flags);
     deserialize_amount(&slice, cell_data, cell_data_size);
 
     for (int16_t i = cells_count - 1; i > 0; --i) {

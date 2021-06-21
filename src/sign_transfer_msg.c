@@ -74,7 +74,7 @@ UX_FLOW(ux_sign_transfer_msg_flow,
 );
 
 void handleSignTransferMsg(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t dataLength, volatile unsigned int *flags, volatile unsigned int *tx) {
-    VALIDATE(p1 == 0 && p2 == 0 && dataLength > sizeof(uint32_t), ERR_INVALID_REQUEST);
+    VALIDATE(p2 == 0 && dataLength > sizeof(uint32_t), ERR_INVALID_REQUEST);
     SignTransferMsgContext_t* context = &data_context.sign_tm_context;
 
     context->account_number = readUint32BE(dataBuffer);
@@ -83,7 +83,8 @@ void handleSignTransferMsg(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t
 
     ByteStream_t src;
     ByteStream_init(&src, msg_begin, msg_length);
-    deserialize_message(&src);
+    uint8_t display_flags = p1;
+    deserialize_message(&src, display_flags);
 
     ux_flow_init(0, ux_sign_transfer_msg_flow, NULL);
     *flags |= IO_ASYNCH_REPLY;

@@ -32,7 +32,7 @@ void reset_app_context(void);
 
 typedef struct AddressContext_t {
     uint8_t address[ADDRESS_LENGTH];
-    char address_str[65];
+    char address_str[70];
 } AddressContext_t;
 
 typedef struct PublicKeyContext_t {
