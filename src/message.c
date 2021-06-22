@@ -4,6 +4,7 @@
 #include "slice_data.h"
 #include "byte_stream.h"
 #include "wallet.h"
+#include <string.h>
 
 #define ADDRESS_CELL_INDEX 1
 
@@ -79,6 +80,13 @@ void deserialize_message(struct ByteStream_t* src, uint8_t display_flags) {
         uint8_t* cell_data = Cell_get_data(&cells[0]);
         uint8_t cell_data_size = Cell_get_data_size(&cells[0]);
         VALIDATE(cell_data_size == 13, ERR_INVALID_MESSAGE);
+        uint8_t seqno = cell_data[11];
+        if (seqno == 0) {
+            strcpy(data_context.sign_tm_context.send_text, "Deploy wallet");
+        }
+        else {
+            strcpy(data_context.sign_tm_context.send_text, "Accept");
+        }
         uint8_t send_mode = cell_data[12];
         VALIDATE(send_mode == 3, ERR_INVALID_SEND_MODE);
     }

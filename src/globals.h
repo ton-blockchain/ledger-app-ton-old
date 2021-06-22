@@ -52,6 +52,7 @@ typedef struct SignTransferMsgContext_t {
     uint8_t hash[SIGN_LENGTH];
     char address_str[70];
     char amount_str[40];
+    char send_text[15];
     uint32_t account_number;
 } SignTransferMsgContext_t;
 

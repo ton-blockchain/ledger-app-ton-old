@@ -53,7 +53,7 @@ UX_STEP_CB(
     send_response(set_result_sign_transfer_msg(), true),
     {
       &C_icon_validate_14,
-      "Accept",
+      data_context.sign_tm_context.send_text,
       "and send",
     });
 UX_STEP_CB(
