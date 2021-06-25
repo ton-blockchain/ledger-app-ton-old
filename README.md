@@ -26,6 +26,8 @@ Refresh the repo (required after Makefile edits):
 ```bash
 make clean
 ```
+> An "arm-none-eabi-gcc: Command not found" may appear - it's OK, doesn't affect anything.
+
 
 Remove the app from the device:
 ```bash
