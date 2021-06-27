@@ -14,6 +14,7 @@
 #define INS_GET_PUBLIC_KEY 0x02
 #define INS_SIGN 0x03
 #define INS_SIGN_TRANSFER_MSG 0x04
+#define INS_GET_ADDRESS 0x05
 
 #define OFFSET_CLA 0
 #define OFFSET_INS 1

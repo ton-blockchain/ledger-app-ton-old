@@ -1,7 +1,7 @@
-# Ledger TON Coin app
+# Ledger TON app
 
 ## Overview
-TON Coin Ledger app for Ledger Nano S/X
+Ledger TON app for Ledger Nano S/X
 
 ## Building and installing
 
@@ -26,6 +26,8 @@ Refresh the repo (required after Makefile edits):
 ```bash
 make clean
 ```
+> An "arm-none-eabi-gcc: Command not found" may appear - it's OK, doesn't affect anything.
+
 
 Remove the app from the device:
 ```bash
@@ -38,4 +40,4 @@ make clean DEBUG=1 load
 ```
 
 ## Documentation
-This follows the specification available in the [`toncoinapp.asc`](https://github.com/newton-blockchain/ledger-app-ton/blob/main/doc/toncoinapp.asc)
+This follows the specification available in the [`tonapp.asc`](https://github.com/newton-blockchain/ledger-app-ton/blob/main/doc/tonapp.asc)

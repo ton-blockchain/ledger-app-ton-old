@@ -22,11 +22,11 @@
 unsigned char G_io_seproxyhal_spi_buffer[IO_SEPROXYHAL_BUFFER_SIZE_B];
 
 DataContext_t data_context;
-MessageContext_t message_context;
+BocContext_t boc_context;
 
 void reset_app_context() {
     os_memset(&data_context, 0, sizeof(data_context));
-    os_memset(&message_context, 0, sizeof(message_context));
+    os_memset(&boc_context, 0, sizeof(boc_context));
 }
 
 void handleApdu(volatile unsigned int *flags, volatile unsigned int *tx) {
@@ -56,6 +56,9 @@ void handleApdu(volatile unsigned int *flags, volatile unsigned int *tx) {
                     handleSignTransferMsg(G_io_apdu_buffer[OFFSET_P1], G_io_apdu_buffer[OFFSET_P2], G_io_apdu_buffer + OFFSET_CDATA, G_io_apdu_buffer[OFFSET_LC], flags, tx);
                     break;
 
+                case INS_GET_ADDRESS:
+                    handleGetAddress(G_io_apdu_buffer[OFFSET_P1], G_io_apdu_buffer[OFFSET_P2], G_io_apdu_buffer + OFFSET_CDATA, G_io_apdu_buffer[OFFSET_LC], flags, tx);
+                    break;
                 default:
                     THROW(0x6D00);
                     break;

@@ -53,17 +53,15 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 3. Open the web wallet [tonwallet.me](https://tonwallet.me) in Google Chrome;
 
-4. Click "Connect Ledger via HID". Select your device and click "Connect";
+4. Click "Connect Ledger". Select your device and click "Connect";
 
 5. After the "Ready to Go!" screen your will see the main screen with all the account information, such as the account balance, recent received and recent sent transactions.
 
 ### Verify address
 
-1. Click "Receive" button and then click "Show Public Key on Device";
+1. Click "Receive" button and then click "Show Address on Device";
 
-2. You can check that the public key in the web wallet and on the Ledger device screen is the same;
-
-3. The public key is displayed in the Ledger device because in the TON the wallet address depends on the version of the wallet smart contract, and the wallet address can be presented in several forms. You can check that **public key matches your address** on the [open source community web page](https://newton-blockchain.github.io/address/). 
+2. You can check that the wallet address in the web wallet and the address on the Ledger device screen is the same;
 
 ### Send TON through Ledger device
 
@@ -75,17 +73,7 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 4. You can check the amount and destination address on the Ledger device screen;
 
-5. Note that the TON address can be represented in several forms. Ledger device screen always display address in HEX form. Use [this web page](https://newton-blockchain.github.io/address/) to display the address in different forms;
-
 5. After approval on the Ledger device, the transaction will be sent;
-
-### First send 
-
-If this is the first sending, then you will need to approve the second message on the Ledger device - the message of deploying your wallet's smart contract. 
-
-This is only necessary for the first sending.
-
-For greater safety, you can have at that moment a minimum number of TON coins on your balance, sufficient only to pay the network commission for deploy (~ 0.011 TON). 
 
 ### Final Notes
 

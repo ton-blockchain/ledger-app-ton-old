@@ -168,3 +168,44 @@ uint8_t convert_hex_amount_to_displayable(uint8_t* amount, uint8_t amount_length
     }
     return targetOffset;
 }
+
+uint16_t crc16(char *ptr, int count) {
+    int crc = 0;
+    uint8_t i;
+    while (--count >= 0) {
+        crc = crc ^ (int)*ptr++ << 8;
+        i = 8;
+        do {
+            if (crc & 0x8000)
+                crc = crc << 1 ^ 0x1021;
+            else
+                crc = crc << 1;
+        } while (--i);
+    }
+    return (crc);
+}
+
+static const char base64_alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const int base64_mod_table[] = {0, 2, 1};
+
+size_t base64_encode(const uint8_t *data, int data_length, char *out) {
+    size_t out_length = 4 * ((data_length + 2) / 3);
+    for (int i = 0, j = 0; i < data_length;) {
+        uint32_t octet_a = i < data_length ? data[i++] : 0;
+        uint32_t octet_b = i < data_length ? data[i++] : 0;
+        uint32_t octet_c = i < data_length ? data[i++] : 0;
+        uint32_t triple = (octet_a << 0x10) + (octet_b << 0x08) + octet_c;
+
+        out[j++] = base64_alphabet[(triple >> 3 * 6) & 0x3F];
+        out[j++] = base64_alphabet[(triple >> 2 * 6) & 0x3F];
+        out[j++] = base64_alphabet[(triple >> 1 * 6) & 0x3F];
+        out[j++] = base64_alphabet[(triple >> 0 * 6) & 0x3F];
+    }
+
+    for (int i = 0; i < base64_mod_table[data_length % 3]; i++) {
+        out[out_length - 1 - i] = '=';
+    }
+
+    out[out_length] = '\0';
+    return out_length;
+}
