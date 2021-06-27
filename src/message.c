@@ -36,7 +36,6 @@ void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t 
         UNUSED(f);
         UNUSED(ihr_disabled);
         UNUSED(bounced);
-        display_flags = bounce ? display_flags | BOUNCEABLE : display_flags;
 
         uint64_t use_src_address = SliceData_get_next_int(slice, 2);
         VALIDATE(use_src_address == 0, ERR_INVALID_DATA);
