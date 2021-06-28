@@ -28,31 +28,34 @@ void deserialize_array(uint8_t* cell_data, uint8_t cell_data_size, uint16_t offs
 }
 
 void deserialize_address(struct SliceData_t* slice, uint8_t* cell_data, uint8_t cell_data_size, uint8_t display_flags) {
-    {
-        uint8_t f = SliceData_get_next_bit(slice);
-        uint8_t ihr_disabled = SliceData_get_next_bit(slice);
-        uint8_t bounce = SliceData_get_next_bit(slice);
-        uint8_t bounced = SliceData_get_next_bit(slice);
-        UNUSED(f);
-        UNUSED(ihr_disabled);
-        UNUSED(bounced);
+    uint8_t f = SliceData_get_next_bit(slice);
+    uint8_t ihr_disabled = SliceData_get_next_bit(slice);
+    uint8_t bounce = SliceData_get_next_bit(slice);
+    uint8_t bounced = SliceData_get_next_bit(slice);
+    UNUSED(f);
+    UNUSED(ihr_disabled);
+    UNUSED(bounced);
 
-        uint64_t use_src_address = SliceData_get_next_int(slice, 2);
-        VALIDATE(use_src_address == 0, ERR_INVALID_DATA);
+    uint64_t use_src_address = SliceData_get_next_int(slice, 2);
+    VALIDATE(use_src_address == 0, ERR_INVALID_DATA);
 
-        uint64_t use_dst_address = SliceData_get_next_int(slice, 2);
-        VALIDATE(use_dst_address == 2, ERR_INVALID_DATA);
-        uint8_t anycast = SliceData_get_next_bit(slice);
-        UNUSED(anycast);
-    }
+    uint64_t use_dst_address = SliceData_get_next_int(slice, 2);
+    VALIDATE(use_dst_address == 2, ERR_INVALID_DATA);
+    uint8_t anycast = SliceData_get_next_bit(slice);
+    UNUSED(anycast);
 
     int8_t wc = SliceData_get_next_byte(slice);
     uint16_t offset = SliceData_get_cursor(slice);
     uint8_t address[ADDRESS_LENGTH];
     deserialize_array(cell_data, cell_data_size, offset, ADDRESS_LENGTH, address);
     SliceData_move_by(slice, ADDRESS_LENGTH * 8);
+
+    if (!bounce) {
+        strcpy(data_context.sign_tm_context.address_str, "non-bounce ");
+    }
     
-    address_to_string(wc, display_flags, address, sizeof(address), sizeof(data_context.sign_tm_context.address_str), data_context.sign_tm_context.address_str);
+    address_to_string(wc, display_flags, address, sizeof(address), 
+        sizeof(data_context.sign_tm_context.address_str), data_context.sign_tm_context.address_str + (bounce ? 0 : 11));
 }
 
 void deserialize_amount(struct SliceData_t* slice, uint8_t* cell_data, uint8_t cell_data_size) {

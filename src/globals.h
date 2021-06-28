@@ -50,7 +50,7 @@ typedef struct SignContext_t {
 typedef struct SignTransferMsgContext_t {
     uint8_t to_sign[TO_SIGN_LENGTH];
     uint8_t hash[SIGN_LENGTH];
-    char address_str[70];
+    char address_str[85];
     char amount_str[40];
     char send_text[15];
     uint32_t account_number;

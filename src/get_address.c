@@ -52,7 +52,7 @@ UX_FLOW(ux_display_address_flow,
 );
 
 void handleGetAddress(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t dataLength, volatile unsigned int *flags, volatile unsigned int *tx) {
-    VALIDATE(dataLength == sizeof(uint32_t) + sizeof(uint8_t), ERR_INVALID_REQUEST);
+    VALIDATE(dataLength == sizeof(uint32_t), ERR_INVALID_REQUEST);
 
     const uint32_t account_number = readUint32BE(dataBuffer);
     dataBuffer += sizeof(account_number);
@@ -63,7 +63,7 @@ void handleGetAddress(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t data
         THROW(SUCCESS);
     } 
     if (p1 == P1_CONFIRM) {
-        int8_t wc = *dataBuffer++;
+        int8_t wc = 0;
         uint8_t display_flags = p2;
         AddressContext_t* context = &data_context.addr_context;
         address_to_string(wc, display_flags, context->address, sizeof(context->address), sizeof(context->address_str), context->address_str);
