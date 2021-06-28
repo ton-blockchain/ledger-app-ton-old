@@ -63,7 +63,7 @@ void handleGetAddress(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t data
         THROW(SUCCESS);
     } 
     if (p1 == P1_CONFIRM) {
-        int8_t wc = *dataBuffer++;
+        int8_t wc = 0;
         uint8_t display_flags = p2;
         AddressContext_t* context = &data_context.addr_context;
         address_to_string(wc, display_flags, context->address, sizeof(context->address), sizeof(context->address_str), context->address_str);
