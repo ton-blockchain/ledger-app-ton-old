@@ -40,4 +40,4 @@ make clean DEBUG=1 load
 ```
 
 ## Documentation
-This follows the specification available in the [`tonapp.asc`](https://github.com/newton-blockchain/ledger-app-ton/blob/main/doc/tonapp.asc)
+This follows the specification available in the [`tonapp.asc`](https://github.com/ton-blockchain/ledger-app-ton/blob/main/doc/tonapp.asc)

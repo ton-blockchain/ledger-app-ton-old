@@ -1,8 +1,8 @@
 # How to use Ledger Nano with TON
 
-You can easily and securely receive, store and send TON coins using the Ledger Nano S.
+You can easily and securely receive, store and send Toncoins using the Ledger Nano S.
 
-TON App for Ledger Nano S is [open source](https://github.com/newton-blockchain/ledger-app-ton) and maintained by TON community.
+TON App for Ledger Nano S is [open source](https://github.com/ton-blockchain/ledger-app-ton) and maintained by TON community.
 
 ### About Ledger hardware wallet
 
@@ -10,7 +10,7 @@ A [Ledger Nano S](https://shop.ledger.com/products/ledger-nano-s) is a hardware 
 
 ### About TON
 
-[TON (The Open Network)](https://toncoin.org) - next generation blockchain maintained by [open source community](https://github.com/newton-blockchain).
+[TON (The Open Network)](https://ton.org) - next generation blockchain maintained by [open source community](https://github.com/ton-blockchain).
 
 The Open Network — a fast and secure blockchain and network project that allows for processing millions of transactions per second and accommodating hundreds of millions of active users and millions of applications.
 
@@ -20,7 +20,7 @@ The Open Network — a fast and secure blockchain and network project that allow
 
 * The latest firmware is [installed](https://support.ledgerwallet.com/hc/en-us/articles/360002731113-Update-Ledger-Nano-S-firmware)
 
-* Ledger Live is [ready to use](https://support.ledgerwallet.com/hc/en-us/articles/360006395233-Take-your-first-steps)
+* Ledger Live is [ready to use](https://support.ledger.com/hc/en-us/articles/4404389606417-Download-and-install-Ledger-Live?docs=true)
 
 * Google Chrome v89 or later is installed
 
@@ -51,7 +51,7 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 2. Open the TON app;
 
-3. Open the web wallet [tonwallet.me](https://tonwallet.me) in Google Chrome;
+3. Open the web wallet [wallet.ton.org](https://wallet.ton.org) in Google Chrome;
 
 4. Click "Connect Ledger". Select your device and click "Connect";
 
@@ -63,9 +63,9 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 2. You can check that the wallet address in the web wallet and the address on the Ledger device screen is the same;
 
-### Send TON through Ledger device
+### Send Toncoins through Ledger device
 
-1. You need to have some TON coins on your balance;
+1. You need to have some Toncoins on your balance;
 
 2. Click the "Send" button;
 
@@ -77,4 +77,4 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 ### Final Notes
 
-If you encounter any issue with your Ledger device and the web wallet, please join our [Telegram group](https://t.me/ton_research) and drop us a line.
+If you encounter any issue with your Ledger device and the web wallet, please write to [TON Volunteer Support](https://t.me/ton_help_bot).
