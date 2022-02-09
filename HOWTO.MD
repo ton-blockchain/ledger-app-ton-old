@@ -77,4 +77,4 @@ You can use the [open source](https://github.com/toncenter/ton-wallet) TON web w
 
 ### Final Notes
 
-If you encounter any issue with your Ledger device and the web wallet, please write to [TON Volunteer Support](https://t.me/ton_help_bot).
+If you encounter any issue with your Ledger device and the web wallet, please write to [TON Foundation Support](https://t.me/ton_help_bot).
