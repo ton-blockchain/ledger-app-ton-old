@@ -1,5 +1,7 @@
 # Ledger TON app
 
+> :warning: DEPRECATED: Please use https://github.com/ton-blockchain/ledger-app-ton.
+
 ## Overview
 Ledger TON app for Ledger Nano S/X
 
